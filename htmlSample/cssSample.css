@@ -1,0 +1,30 @@
+p{
+	color: blue;
+}
+.html{
+	color:purple;
+	
+}
+.css{
+	
+	text-decoration:underline;
+}
+#select{
+	font-size:50px;
+}
+
+.html.css{
+	border: 3px solid;
+}
+
+p[class]{
+	font-size:19px;	
+}
+p[class][id]{
+	text-shadow:15px 15px 20px black;
+	color: green;
+}
+/*p[class="css"]{
+	text-shadow:15px 15px 20px black;
+	color: green;
+}*/
