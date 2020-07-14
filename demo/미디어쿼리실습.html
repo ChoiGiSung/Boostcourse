@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>media queries</title>
+		<style>
+		            /*
+			@media screen and (max-width: 767px) {
+				body { background-color: gold; }
+			}
+			@media screen and (min-width: 768px) and (max-width:1024){
+				body{background-color:lightblue;}	
+			}
+			@media screen and (min-width:1025px){
+				body{background-color:pink;}
+			}
+			*/
+
+			body{background-color:gold;}
+			@media screen and (min-width: 768px) and (max-width:1024){
+				body{background-color:lightblue;}	
+			}
+			@media screen and (min-width:1025px){
+				body{background-color:pink;}
+			}
+			
+			@media print{
+				a{text-decoration:none;}
+				a:after{dispaly:inline; content: "("attr(href)")"}
+			}
+		</style>
+	</head>
+	<body>
+		<p>w3c는 <a href="https://www.naver.com"> css3 미디어쿼리
+		문서</a>를 2012년 69월에 표준 권고안으로 제정하였다</p>
+		<p>또한 기본 미덩 개선 작업 중이며 <a href="https://www.google.com">구글</a>를 발표 했다</p>
+
+	</body>
+</html>
