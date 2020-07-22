@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app>
+
+  <display-name>Spring JavaConfig Sample</display-name>
+
+  <servlet>
+    <servlet-name>mvc</servlet-name> 	<!-- forncontroler는 dispat로 할꺼야 -->
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextClass</param-name> <!-- 빈 공장이 이썽야해 -->
+      <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+    </init-param>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>kr.or.connect.mvcexam.config.WebMvcContextConfiguration</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>mvc</servlet-name>
+    <url-pattern>/</url-pattern> <!-- url이 /로 들어오면 mvc  실행해 위쪽에 있어 -->
+  </servlet-mapping>
+
+
+</web-app>
