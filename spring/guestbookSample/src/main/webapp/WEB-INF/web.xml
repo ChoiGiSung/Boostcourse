@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app>
+
+<!-- java설정이나 기본 설정은 여기인 어플리케이션 컴피그를 이용하고 , 디스패쳐 서블릿을 설정할때는 밑에 mvc를 이용한다 -->
+<!-- 밑에 리스너가 있는데 runtime시 실행되는데 그때 컨텍스트리스너를 실해시키는데 그래서 컨테스트 파람에 값을 넣는다-> 클래스를 넣어주고 있다 -->
+<!-- 이렇게 설정을 두개의 파일로 나눠놨는데 위쪽은 비즈니스 설정이다  -->
+  <display-name>Spring JavaConfig Sample</display-name>
+
+	<display-name>Spring JavaConfig Sample</display-name>
+	<context-param>
+		<param-name>contextClass</param-name>
+		<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+		</param-value>
+	</context-param>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>guestbookSample.config.ApplicationConfig
+		</param-value>
+	</context-param>
+	<!-- 설정 파일을 여러개 만들어서 -> 리액션 이니 파일 여러개 알려주기 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+
+
+
+
+  <servlet>
+    <servlet-name>mvc</servlet-name> 	<!-- 밑에서 요청 받고 이름이 같은 mvc서블릿 실해한다 -> 이거는 디스페쳐서블렛이다->클래스는 밑에있는 사용자정의 클래스 실행할꺼야 -> 거기서 함수를 봐라 -->
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextClass</param-name> <!-- 빈 공장이 이썽야해 -->
+      <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+    </init-param>
+    
+    <!-- 자신의 설정 파일 위치를 다시 설정 -->
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>guestbookSample.config.WebMvcContextConfiguration</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping> 
+    <servlet-name>mvc</servlet-name>
+    <url-pattern>/</url-pattern> <!-- url이 /로 들어오면 mvc와 이름이 같은 서블렛   실행해-> 위쪽에 있어 -->
+  </servlet-mapping>
+
+
+<!-- 요청이 들어오기전 나가기전에 한번씩 필터 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter
+		</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+</web-app>
