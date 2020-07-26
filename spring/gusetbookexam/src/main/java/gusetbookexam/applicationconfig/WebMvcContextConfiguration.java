@@ -14,8 +14,9 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 //설정 파일
 
 @Configuration
-@EnableWebMvc
+@EnableWebMvc //기본적인 설정(핸들러라던가) 그런게 있는데 그런거 자동 설정해줌
 @ComponentScan(basePackages = {"gusetbookexam.controller"})
+									//상속은 위의 기본설정으로도 부족해 ! 더 설정 해야해 그때 상속받는다
 public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
 
 	@Override

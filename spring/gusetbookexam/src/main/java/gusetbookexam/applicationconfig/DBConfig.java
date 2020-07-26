@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 
 @Configuration //정보야
 @EnableTransactionManagement		//트렌젝션 사용
+							//특정 트렌젝션을 쓸꺼야!
 public class DBConfig implements TransactionManagementConfigurer {
 		//db정보 뭐 아이디나 그런거
 	private String driverClassName="com.mysql.jdbc.Driver";
@@ -20,6 +21,7 @@ public class DBConfig implements TransactionManagementConfigurer {
 	private String username="root";
 	private String password="1234";
 	
+	//나중에 namedjdbc나 뭐시기할때 필요함 
 	@Bean
 	public DataSource dataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
