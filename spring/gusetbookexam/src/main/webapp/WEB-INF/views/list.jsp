@@ -26,7 +26,12 @@ ${Dto.id }<br>
 ${Dto.name }<br>
 ${Dto.content }<br>
 ${Dto.regdate}<br>
+
+<!-- 세션스콥은-> 세션 안에 있는 값을 보겠다 -->
+<c:if test="${sessionScope.isAdmin == 'true'}"><a href="delete?id=${Dto.id }">삭제</a></c:if><br><br>
 </c:forEach><br>
+
+
 <c:forEach items="${pageStartList }" var="dd">
 	${dd}<br>
 </c:forEach>

@@ -24,7 +24,19 @@ p[class][id]{
 	text-shadow:15px 15px 20px black;
 	color: green;
 }
+li:first-child{color: red;}
+li:last-child{color: blue;}
+a:link{color: red;}
+a:visited{color: gray;}
+p:first-line{color:yellow;}
+p:first-letter{font-size:3em;}
+
 /*p[class="css"]{
 	text-shadow:15px 15px 20px black;
 	color: green;
-}*/
+}
+
+p:before{color: red; content:"비포을사용";}
+p:after{color: blue; content:"애프터";}
+
+*/
