@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import gusetbookexam.argumentresolver.HeaderInfo;
 import gusetbookexam.dto.Dto;
 import gusetbookexam.service.GuestbookService;
 
@@ -42,7 +43,18 @@ public class WriteController {
 			ModelMap model
 		//	,HttpServletRequest request//쿠키를 위해 HttpSErvletRequest ,HttpSErvletResponse 추가
 			,@CookieValue(value = "count",defaultValue = "0",required = true) String value//spring 어노테이션을 사용하면 아주 간편해짐
-			,HttpServletResponse response) {
+			,HttpServletResponse response
+			,HeaderInfo headerInfo) {//아규먼트 헤더 확인 차 넣음
+		
+		/*헤더인포
+		 * 
+		 * */
+		System.out.println("--------");
+		System.out.println(headerInfo.get("user-agent"));
+		System.out.println("--------");
+		
+		
+		
 		System.out.print("controller의 list");
 		//start로 시작하는 방명록 목록 구하기
 		List<Dto> list=guestbookService.getGuestbooks(start);
