@@ -6,10 +6,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+import gusetbookexam.interceptor.LogInterceptor;
 
 //설정 파일
 
@@ -48,10 +51,20 @@ public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
 		InternalResourceViewResolver resolver=new InternalResourceViewResolver();
 		resolver.setPrefix("/WEB-INF/views/");
 		resolver.setSuffix(".jsp");
-		//들어오는 값에 앞뒤에 경로 붙이기
+		//들어오는 값에 앞뒤에 경로 붙이기 
 		
 		return resolver;
 	}
+
+	
+	//입터셉터 등록
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(new LogInterceptor());
+	}
+	
+	
+	
 	
 	
 	
