@@ -1,0 +1,30 @@
+body{
+	background-color:green; 
+	margin:15px;
+}
+
+.menu{
+	
+	background-color:blue; 
+}
+.top{
+	 border: 5px solid black;
+	padding:20px;
+	background-color:white; 
+}
+
+.body{
+	 border: 5px solid black;
+	padding:20px;
+	background-color:white; 
+}
+
+.foot{
+	 border: 5px solid black;
+	padding:20px;
+	background-color:white; 
+}
+
+.img{
+	border: 5px solid black;
+}
