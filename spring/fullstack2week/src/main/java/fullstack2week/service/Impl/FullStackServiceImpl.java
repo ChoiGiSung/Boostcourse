@@ -25,15 +25,22 @@ public class FullStackServiceImpl implements FullStackService{
 
 			List<TodoDto> list=dao.selectAll();
 			if(list ==null) {
-				System.out.println("비었음");
 			}
 			return list;
 	}
 
 	@Override
 	@Transactional(readOnly = false)
-	public int updateFullstack(TodoDto dto) {
-		
+	public int updateFullstack(int id) {
+		dao.updateTodo(id);
+		return 0;
+	}
+	
+	
+	@Override
+	@Transactional(readOnly = false)
+	public int updatedoingFullstack(int id) {
+		dao.updateToding(id);
 		return 0;
 	}
 
@@ -53,6 +60,8 @@ public class FullStackServiceImpl implements FullStackService{
 		}
 		return null;
 	}
+
+
 
 
 	

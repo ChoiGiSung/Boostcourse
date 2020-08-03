@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import fullstack2week.dto.TodoDto;
 import fullstack2week.service.FullStackService;
@@ -79,9 +80,15 @@ public class FullstackController {
 		return null;
 	}
 	
-	@GetMapping(path = "/update")
-	public String upadte(@ModelAttribute TodoDto dto) {
-		service.updateFullstack(dto);
+	@GetMapping(path = "/updatepage")
+	public String upadte(@RequestParam(name="id",required = true) int id) {
+		service.updateFullstack(id);
+		return "redirect:list";
+	}
+	
+	@GetMapping(path="/updatedoing")
+	public String updatedoing(@RequestParam(name="doing",required =true) int id) {
+		service.updatedoingFullstack(id);
 		return "redirect:list";
 	}
 }

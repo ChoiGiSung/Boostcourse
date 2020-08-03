@@ -37,7 +37,9 @@ public class TodoDao {
 	}
 	
 	public List<TodoDto> selectAll(){
+		
 		//if로 타입 별로 셀렉트
+		
 		return jdbc.query(SELECT_ALL,rowMapper) ;
 	}
 	
@@ -55,17 +57,21 @@ public class TodoDao {
 	}
 	
 	//엡데이트
-	public int updateTodo(TodoDto dto) {
-		Map<String,?> map=Collections.singletonMap("id",dto.getId());
-		if(dto.getType().equals("todo")) {
-			return jdbc.update(UPDATE_DO_DOING,map);
-		}else if(dto.getType().equals("doing")){
-			return jdbc.update(UPDATE_DOING_DONE,map);
-		}
+	public int updateTodo(int id) {
+		Map<String,?> map=Collections.singletonMap("id",id);
+	//	if(dto.getType() !=null) {
+				return jdbc.update(UPDATE_DO_DOING,map);
+			
+		//	}
+	//	}
+
 		
 		//바꾸고자하는거의 타입이 todo였으면 두잉으로 ,두잉이였으면 던으로
-		
-		return 0;
+	}
+	
+	public int updateToding(int id) {
+		Map<String,?>map=Collections.singletonMap("id",id);
+		return jdbc.update(UPDATE_DOING_DONE,map);
 	}
 	
 	

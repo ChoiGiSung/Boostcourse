@@ -7,12 +7,14 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
-	.full{
-		height: 700px;
-	}
+
 	div{
 		border: 1px solid gray; 
 			
+	}
+	.list{
+		position: relative;
+		height:900px ;
 	}
 	
 	.list > div{
@@ -28,7 +30,20 @@
 		 width: 200px;
 		 display: inline;
 	}
-
+	.todo{
+		position: absolute;
+		top: 20px;
+	}
+	.doing{
+		position: absolute;
+		left: 280px;
+		top: 20px;
+		}
+	.done{
+		position: absolute;
+		right: 60px;
+		top: 20px;
+	}
 </style>
 
 </head>
@@ -46,6 +61,7 @@
 					${dto.name }<br>
 					${dto.sequence }<br>
 					${dto.regdate }<br>
+					<input type="button" onclick="location.href='updatepage?id=${dto.id}'" value="보내기"> 
 				</c:forEach>
 				<!-- 리스트 -->
 			</div>
@@ -59,8 +75,8 @@
 					${dto.name }<br>
 					${dto.sequence }<br>
 					${dto.regdate }<br>
+					<input type="button" onclick="location.href='updatedoing?doing=${dto.id}'" value="전송">
 				</c:forEach>
-				<!-- 리스트 -->
 				<!-- 리스트 -->
 			</div>
 			
