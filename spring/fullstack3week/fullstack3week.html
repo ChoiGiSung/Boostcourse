@@ -64,18 +64,10 @@
 			<img alt="프로모션" src="">
 		</div>
 		<div class="tebmenu" align="center">
-			<div>
-				전체리스트
-			</div>
-			<div>
-				전시
-			</div>
-			<div>
-				뮤지컬
-			</div>
-			<div>
-				콘서트
-			</div>
+			<div>crong</div>
+			<div>jk</div>
+			<div>honux</div>
+			<div>pobi</div>
 		</div>
 		<div class="countcontent" align="center">
 			빠른 예매 가능한 행사가 ? 개 있습니다
@@ -99,26 +91,36 @@
 	
 	<script>
 	//템플릿과 데이터를 합쳐주는 함수
-	function makeTemplate(data){
+	function makeTemplate(data,clickedName){
 		var html=document.querySelector(".tabcontent").innerHTML;
 		var result=[];
+		var resultHTML;
 		
-		console.log(html);
+		//데이타 전부가 바뀌네 -> 원클릭시 하나만 바뀌니까 필요없음
+//	data.forEach(function(v){
+//			var result2=html.replace("{name}",v.name)
+//			.replace("{favorites}",v.favorites);
+//		
+//			result.push(result2);
+//	});
 		
-	data.forEach(function(v){
-			var result2=html.replace("{name}",v.name)
-			.replace("{favorites}",v.favorites);
-		
-			result.push(result2);
-	});
+		//하나만 가져와서 바꾸기 -> 너가 클릭한거와 같은지 검사
+	for(var i=0;i<data.length;i++){
+		if(data[i].name === clickedName){
+			resultHTML=html.replace("{name}",data[i].name)
+						.replace("{favorites}",data[i].favorites);
+			break;
+		}
+	}
 	
-	console.log(result);
+	console.log(resultHTML);
+	document.querySelector(".content").innerHTML =resultHTML;
 	}
 	
 	
 	
 	//Ajax통신
-	function sendAjax(url){
+	function sendAjax(url,clickedName){
 		var oReq=new XMLHttpRequest();
 		oReq.addEventListener("load",function(){
 			//로그시 일어나는 일
@@ -126,7 +128,7 @@
 			var data=JSON.parse(oReq.responseText);
 			
 			//이제 data랑 템플릿이랑 조합해서 화면에 넣어 주면 된다
-			makeTemplate(data);
+			makeTemplate(data,clickedName);
 			
 		});
 		oReq.open("GET",url);
@@ -141,7 +143,8 @@
 		function clicktab(evt){
 			//클릭함수
 			console.log(evt.target.innerText);
-			sendAjax("./json");//메이븐에서 json 파일을 부를 방법을 모색하라
+			sendAjax("./json",evt.target.innerHTML);//메이븐에서 json 파일을 부를 방법을 모색하라
+								//클릭된 타켓의 정보도 넣어주자
 		}
 	
 	//------------------------	
