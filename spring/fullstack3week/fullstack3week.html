@@ -1,50 +1,158 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 
 	<style type="text/css">
 		.full{
 			width:500px;
 			margin: 0px auto;
+			border: 1px solid black; 
 		}
-		
-		.menu{
-			background-color: red;
-		
+		.gnb{
+			background-color: green;
 		}
-	
-		.menu > div{
+		.gnb > p{
 			display: inline-block;
-			width: 146px;
+			margin-left: 150px;
 		}
 		
+		.promotion{
+			background-color: red;
+		}
+		.tebmenu{
+			background-color: gray;
+		}
+		.tebmenu >div{
+			display: inline-block;
+			margin-left:60px;
+			border: 1px solid black;
+			
+		}
 		.content{
-			background-color: blue;
+			background-color: gray;
 		}
-		h4{
-			margin: 0px;
+		.content >div {
+			display: inline-block;
+			border: 1px solid gray;
 		}
+		/*
+		.content>div:first-child{
+			background-color: red;
+			position: absolute;
+			left: 30px;
+		}
+		*/
+		.content>div:last-child{
+			background-color: red;
+			margin-left: 200px;
+		}
+		
+		
 	</style>
 
 </head>
 <body>
 
 	<div class=full>
-		<div class="menu">
-			<div>��1</div>
-			<div>��2</div>
-			<div>��3</div>
-			<div>��4</div>
+		<div class="gnb">
+			<img alt="네이버 예약 홈" src="./aa.png">
+			<p>예약확인</p>
 		</div>
-		<section class="content">
-			<h4>����</h4>
-			<p>
-			������ ���� �����ٶ󸶹ٻ������īŸ����
-			������ ���� �����ٶ󸶹ٻ������īŸ����
-			</p>
-		</section>
+		<div class="promotion">
+			<img alt="프로모션" src="">
+		</div>
+		<div class="tebmenu" align="center">
+			<div>
+				전체리스트
+			</div>
+			<div>
+				전시
+			</div>
+			<div>
+				뮤지컬
+			</div>
+			<div>
+				콘서트
+			</div>
+		</div>
+		<div class="countcontent" align="center">
+			빠른 예매 가능한 행사가 ? 개 있습니다
+		</div>
+		<div class="content">
+			<p>golf,facebook</p>
+			<div>
+				<img alt="이미지 for문으로" src="">
+			</div>
+			<div>
+				<img alt="이미지 for문으로" src="">
+			</div>
+			
+		</div>
+		<div class="bottom" align="center">
+			이메일 뭐시기<br>
+			앟
+		</div>
 	</div>
+	
+	
+	<script>
+	//템플릿과 데이터를 합쳐주는 함수
+	function makeTemplate(data){
+		var html=document.querySelector(".tabcontent").innerHTML;
+		var result=[];
+		
+		console.log(html);
+		
+	data.forEach(function(v){
+			var result2=html.replace("{name}",v.name)
+			.replace("{favorites}",v.favorites);
+		
+			result.push(result2);
+	});
+	
+	console.log(result);
+	}
+	
+	
+	
+	//Ajax통신
+	function sendAjax(url){
+		var oReq=new XMLHttpRequest();
+		oReq.addEventListener("load",function(){
+			//로그시 일어나는 일
+			//제이슨파일에서 얻은 값은 스트링-> 제이슨.파스를 통해 제이슨 형태로 다시 저장
+			var data=JSON.parse(oReq.responseText);
+			
+			//이제 data랑 템플릿이랑 조합해서 화면에 넣어 주면 된다
+			makeTemplate(data);
+			
+		});
+		oReq.open("GET",url);
+		oReq.send();
+	}
+	
+	
+	//탭 메뉴 리스너
+		var tabmenu=document.querySelector(".tebmenu");
+		tabmenu.addEventListener("click",clicktab);
+		
+		function clicktab(evt){
+			//클릭함수
+			console.log(evt.target.innerText);
+			sendAjax("./json");//메이븐에서 json 파일을 부를 방법을 모색하라
+		}
+	
+	//------------------------	
+	</script>
+	
+	<script type="template" class="tabcontent">
+		<h4>hello {name}</h4>	
+		<p>{favorites}</p>
+	</script>
+	
+	
+	
 </body>
 </html>
