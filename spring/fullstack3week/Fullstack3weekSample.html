@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+	<style>
+	.full{
+			margin: 0px auto;
+			width: 500px;
+	}
+	div{
+		border: 1px solid black;
+	}
+		.tab > div{
+			display: inline-block;
+			background-color: orange;
+		}
+		
+		.content{
+			background-color: green;
+			
+		}
+	</style>
+</head>
+<body>
+	<div class="full" align="center">
+		<div class="tab">
+			<div>crong</div>
+			<div>jk</div>
+			<div>honux</div>
+			<div>pobi</div>
+		</div>
+		<div class="content">컨텐트 내용</div>
+	</div>
+	
+	
+	<script type="text/javascript">
+	//replace 함수
+	function replaceP(data,target){
+		var html=document.querySelector(".tamplate").innerHTML;
+		var content=document.querySelector(".content");
+		var result;
+		
+		for(var i=0;i<data.length;i++){
+			console.log(target);
+			console.log(data[i].name);
+			if(data[i].name === target){
+				result=html.replace("{name}",data[i].name)
+							.replace("{favorites}",data[i].favorites)
+			}
+			}
+		content.innerHTML=result;
+	}
+	
+	
+	//ajax통신	
+	function sendAjax(url,target){
+		var oReq=new XMLHttpRequest();
+		oReq.addEventListener("load",function(){
+			var data=JSON.parse(oReq.responseText);
+			//리플레이스 함수 호출
+			replaceP(data,target);
+		});
+		
+		oReq.open("GET",url);
+		oReq.send();
+		
+	}
+	
+	
+	
+	//탭의 이벤트 리스너
+		var tab=document.querySelector(".tab");
+		tab.addEventListener("click",clicktab);
+		
+		function clicktab(evt){
+			console.log(evt.target.innerHTML);//one two three four 이 나옴 
+			var url=("./json");
+			sendAjax(url,evt.target.innerHTML); //url
+		}
+	
+	
+	</script>
+	
+	
+	
+	
+	<script type="tamplate" class="tamplate">
+		<p>{name}</p>
+		<h4>{favorites}</h4>
+	</script>
+</body>
+</html>
